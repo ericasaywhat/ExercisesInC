@@ -15,10 +15,11 @@ In interpreted languages, variable names are stored in memory while teh program 
  	>2) The compiler can check whether the arguments have the right type and if the return value is used correctly.
 
 3) Give an example of a static semantic error.
+
 Static semantic errors could happen when variables and values don't have the right type.
 
 4) What are two reasons you might want to turn off code optimization?
-	>1)Optimizations can cause certain subtle bugs to appear or disappear
+	>1)Optimizations can cause certain subtle bugs to appear or disappear.
 	>2)Using higher level optimizations takes a longer time to compile.
 
 5) When you run `gcc` with `-S`, why might the results look different on different computers?
