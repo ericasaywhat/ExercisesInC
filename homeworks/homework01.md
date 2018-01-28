@@ -23,11 +23,14 @@ Static semantic errors could happen when variables and values don't have the rig
 	>2) Using higher level optimizations takes a longer time to compile.
 
 5) When you run `gcc` with `-S`, why might the results look different on different computers?
+
 GCC generates code for the machine the program is running on, so the assembly code `-S` generates will look different on different computers.
 
 6) If you spell a variable name wrong, or if you spell a function name wrong, the error messages
 you get might look very different.  Why?
+
 When you spell a variable name wrong, you get an error message from the compiler because the misspelled variable doesn't exist. When you spell a function name wrong, the error message comes from the linker if the function comes from a library.
 
 7) What is a segmentation fault?
+
  A segmentation fault occurs if you try to read or write an incorrect location in memory.
