@@ -20,6 +20,7 @@ Static semantic errors could happen when variables and values don't have the rig
 
 4) What are two reasons you might want to turn off code optimization?
 	>1)Optimizations can cause certain subtle bugs to appear or disappear.
+	
 	>2)Using higher level optimizations takes a longer time to compile.
 
 5) When you run `gcc` with `-S`, why might the results look different on different computers?
