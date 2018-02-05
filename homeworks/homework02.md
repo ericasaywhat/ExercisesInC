@@ -16,6 +16,7 @@ a clear, concise, complete sentence or two.
 the ones in the book).  What is abstractly true about the system that
 is not literally true about the implementation?
 
+Venmo is a real-world example of virtualization. When one pays another on Venmo, it seems as though they are paying directly , though that is not literally true.
 
 2. What is the difference between a program and a process
 
@@ -23,11 +24,11 @@ A process is a software object that represents a program. While usually a proces
 
 3. What is the primary purpose of the process abstraction? 
 
-The primary purpose of process abstraction is to 
+The primary purpose of process abstraction is to make it so that users don't have to know about an entire thing in order to use something.
 
 4. What illusion does the process abstraction create?
 
-Process abstraction creates the iluusion 
+Process abstraction creates the iluusion that all of the processes are separated when they are, in fact, not.
 
 5. What is the kernel?
 
