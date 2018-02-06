@@ -58,7 +58,4 @@ int main()
 
   When I comment the print functions back in, the pointers to the array are printed, and
   bar() puts in increments of size as the elements in the array.
-
-
-
 */
