@@ -2,14 +2,27 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAXSIZE 5
+#define MAXSIZE 100
 
-int ind = 0;
+/* This is a program written to sum an array of integers that are input by the user,
+   one per line, when the user enters 'Ctrl+D' or when the number of integers hits
+   the MAXSIZE
+
+   author:Erica Lee
+   last updated: 02/05/2018
+*/
+
 int nums[MAXSIZE];
 
+/* This function prompts the user to enter the MAXSIZE of integers or less,
+   converts them to integers and stores them in an integer array.
+
+   Breaks when the array has reached MAXSIZE.
+*/
 void userInput() {
+    int ind = 0;
     char number[sizeof(int)];
-    printf("Enter %i integers (Exit with Ctrl+D): \n", MAXSIZE);
+    printf("Enter at most %i integers (Exit with Ctrl+D): \n", MAXSIZE);
     while(scanf("%s", number) != EOF) {
         nums[ind] = atoi(number);
         ind++;
@@ -20,6 +33,7 @@ void userInput() {
     }
 }
 
+/* This function sums the integer array and prints it. */
 void printSum() {
     int i;
     int sum = 0;
