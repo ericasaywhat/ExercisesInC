@@ -23,6 +23,7 @@ Follow these steps to get this program working:
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <ctype.h> //didn't have error
 
 /* reverse_string: Returns a new string with the characters reversed.
 
@@ -33,7 +34,17 @@ returns: string
 */
 char *reverse_string(char *s) {
     //TODO: Fill this in.
-    return "";
+    int index = 0;
+    size_t len = strlen(s);
+    char *newString = malloc(sizeof(char)*(len+1));
+    char *t = len + s - 1;
+
+    while(t >= s ){
+        newString[index] = *t;
+        t--;
+        index++;
+    }
+    return newString;
 }
 
 /* ctoi: Converts a character to integer.
@@ -53,7 +64,8 @@ returns: character '0' to '9'
 */
 char itoc(int i) {
     //TODO: Fill this in, with an appropriate assertion.
-    return '0';
+    assert(i<=9 && i>=0);
+    return i+'0';
 }
 
 /* add_digits: Adds two decimal digits, returns the total and carry.
@@ -70,6 +82,11 @@ carry: pointer to char
 */
 void add_digits(char a, char b, char c, char *total, char *carry) {
     //TODO: Fill this in.
+    int temp= ctoi(a)+ctoi(b)+ctoi(c);
+    int total_int = temp%10;
+    int carry_int = (temp - total_int)/10;
+    *carry = itoc(carry_int);
+    *total = itoc(total_int);
 }
 
 /* Define a type to represent a BigInt.
@@ -183,12 +200,12 @@ void test_add_bigint() {
     char *t = "99999999999999999999999999999999999999999999";
     char *res = "000000000000000000000000000000000000000000001";
 
-    BigInt big1 = make_bigint(s);    
+    BigInt big1 = make_bigint(s);
     BigInt big2 = make_bigint(t);
     BigInt big3 = malloc(100);
 
 	add_bigint(big1, big2, '0', big3);
-    
+
     if (strcmp(big3, res) == 0) {
         printf("add_bigint passed\n");
     } else {
@@ -202,8 +219,9 @@ int main (int argc, char *argv[])
     test_itoc();
     test_add_digits();
 
+
     //TODO: When you have the first three functions working,
     //      uncomment the following, and it should work.
-    // test_add_bigint();
+    test_add_bigint();
     return 0;
 }
