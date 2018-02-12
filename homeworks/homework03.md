@@ -22,7 +22,7 @@ If one character can take up to 32 bits, then 2<sup>32</sup> (about 4 billion) u
 
 3) What is the difference between "memory" and "storage" as defined in *Think OS*?
 
-As defined in *Think OS*, "memory" is used to refer to the random access memory (RAM) while "storage" is used to refer to hard disk drive (HDD) or solid state drive (SSD).
+As defined in *Think OS*, "memory" is used to refer to the random access memory (RAM) while "storage" is used to refer to hard disk drive (HDD) or solid state drive (SSD). Things that are stored in RAM will be lost when the computer is shut down whereas, things stored on HDD and SDD are for long term storage.
 
 4) What is the difference between a GiB and a GB?  What is the percentage difference in their sizes?
 
