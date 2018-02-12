@@ -11,6 +11,17 @@ Modified version of an example from Chapter 2.5 of Head First C.
 
 #define NUM_TRACKS 5
 
+/* This is a program written to find tracks using a search word or phrase.
+   The user enters the search phrase and the program uses regex to find
+   the track containing the substring.
+
+   The program prints the track number and track name
+
+   author:Erica Lee
+   last updated: 2/11/2018
+*/
+
+
 char tracks[][80] = {
     "So What",
     "Freddie Freeloader",
