@@ -69,6 +69,7 @@ void find_track_regex(char pattern[])
         }
 
     }
+   regfree(&regex);
 
 
 }
