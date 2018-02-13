@@ -51,9 +51,6 @@ void find_track_regex(char pattern[])
 {
     // TODO: fill this in
     regex_t regex;
-    char msgbuf[100];
-    size_t nmatch = 2;
-    regmatch_t matches[2];
     int i;
 
     int compiled = regcomp(&regex, pattern, 0);
