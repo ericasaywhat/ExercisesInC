@@ -28,7 +28,17 @@ returns: 1 if true, 0 otherwise
 int endswith(char *s, char *suffix)
 {
     // TODO: Fill this in!
-    return 0;
+    size_t i = strlen(s);
+    size_t j = strlen(suffix);
+    for(j; j>0; j--){
+        // printf("%c\n %c\n", s[i], suffix[j]);
+        if (s[i] != suffix[j]) {
+            return 0;
+        }
+        i--;
+    }
+
+    return 1;
 }
 
 
