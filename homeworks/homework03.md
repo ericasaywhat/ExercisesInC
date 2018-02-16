@@ -30,7 +30,7 @@ A GiB is a gibibyte that is 2<sup>30</sup> bytes, and a GB is a gigabyte which i
 
 5) How does the virtual memory system help isolate processes from each other?
 
-The virtual memory system helps isolate processes from each other since the hardware translates virtual memory to physical memory per process, the same virtual address from two different processes map to different locations in physical memory.
+The virtual memory system helps isolate processes from each other since the hardware translates virtual memory to physical memory per process.(The same virtual address from two different processes map to different locations in physical memory.)
 
 6) Why do you think the stack and the heap are usually located at opposite ends of the address space?
 
@@ -38,7 +38,7 @@ The stack and heap are usually located at opposite ends of the address space sin
 
 7) What Python data structure would you use to represent a sparse array?
 
-I would use a dictionary to represent a sparse array or a 2D array or a lists of lists.
+I would use a Python dictionary to represent a sparse array.
 
 8) What is a context switch?
 
