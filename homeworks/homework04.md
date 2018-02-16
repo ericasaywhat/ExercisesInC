@@ -5,7 +5,7 @@
 Modify the link below so it points to the `ex03` directory in your
 student repository.
 
-[Here is a link to the ex03 directory in my repository](https://github.com/YOUR_GITHUB_USERNAME_HERE/ExercisesInC/tree/master/exercises/ex02.5)
+[Here is a link to the ex03 directory in my repository](https://github.com/ericasaywhat/ExercisesInC/tree/master/exercises/ex02.5)
 
 ### Think OS Chapter 4 reading questions
 
@@ -14,15 +14,26 @@ student repository.
 1) What abstractions do file systems provide?  Give an example of something that is logically 
 true about files systems but not true of their implementations.
 
+
+
+
+
 2) What information do you imagine is stored in an `OpenFileTableEntry`?
 
+An `OpenFileTableEntry` should store whether or not the file is being read or written, as well as a pointer for where it's read up to in the file. It should possibly contain a pointer to the piece of memory where the operating system can check whether or not the next character of the file is already in memory.
+
 3) What are some of the ways operating systems deal with the relatively slow performance of persistent storage?
+
+Operating systems deal with the relatively slow performance of persistent storage by trying to read large blocks each time they access the disk (block transfers), loading a block that is predicted the process needs before it's been requested (prefetching), storing the data in memory to modify and write into disk later (buffering), and keeping a copy of a block in memory since a process is likely to use the same blocks so that it can handle future requests at memory speed (caching).
 
 4) Suppose your program writes a file and prints a message indicating that it is done writing.  
 Then a power cut crashes your computer.  After you restore power and reboot the computer, you find that the 
 file you wrote is not there.  What happened?
 
+The file that my program had just written was probably stored in a buffer to be written into disk later. The power cut probably crashed the computer before the operating system was able to write the file into disk.
+
 5) Can you think of one advantage of a File Allocation Table over a UNIX inode?  Or an advantage of a inode over a FAT?
+
 
 6) What is overhead?  What is fragmentation?
 
