@@ -30,7 +30,7 @@ int main (int argc, char **argv)
   host = argv[optind];
   ai = Host_serv (host, NULL, 0, 0);
 
-  printf ("trout to %s (%i): %d hops max, %d data bytes\n",
+  printf ("trout to %s (%s): %d hops max, %d data bytes\n",
 	  ai->ai_canonname,
 	  Sock_ntop_host (ai->ai_addr, ai->ai_addrlen),
 	  max_ttl, datalen);
