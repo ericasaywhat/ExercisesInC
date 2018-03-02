@@ -14,6 +14,8 @@ student repository.
 1) Suppose you have the value 128 stored as an unsigned 8-bit number.  What happens if you convert 
 it to a 16-bit number and accidentally apply sign extension?
 
+The unsigned 8-bit number 128 is stored as 1000000. If you convert it to a 16-bit number and apply a sign extension, we would read the first bit 1 and think that this number is negative and apply 8 1s to the beginning adn we would end up with 11111111 10000000.
+
 2) Write a C expression that computes the two's complement of 12 using the XOR bitwise operator. 
 Try it out and confirm that the result is interpreted as -12.
 
