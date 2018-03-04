@@ -21,16 +21,20 @@ Try it out and confirm that the result is interpreted as -12.
 
 12 ^ -8
 
-` 00001100
+``` 00001100
 ^ 11111000
 -----------
-  11110100 `
+  11110100 ```
 
 3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a
 sign bit or two's complement?
 
+Biased integers can represent numbers between a range from the negative to the positive of the bias. IEEE floating-point uses biased integers to represent the exponent since it's easier with biased integers. It's harder to represent values with two's complement. The sign bit takes up an extra bit which, without it, we can represent two times the amount of numbers.
+
 4) Following the example in Section 5.4, write the 32-bit binary representation of -13 in single precision 
 IEEE floating-point.  What would you get if you accidentally interpreted this value as an integer?
+
+
 
 5) Write a function that takes a string and converts from lower-case to upper-case by flipping the sixth bit.  
 As a challenge, you can make a faster version by reading the string 32 or 64 bits at a time, rather than one
