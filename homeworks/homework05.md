@@ -49,12 +49,12 @@ We can flip the sixth bith by XORing with 00100000, which is a space. Thus, in o
 #include <string.h>
 
 void convertCase(char* upperBits, char* lowerString){
-	int length = sizeof(upperBits);
-	int i=0;
-	for(i; i<length; i++){
-		char lower = lowerString[i];
-    	upperBits[i] = lower ^ ' ';
-	}
+    int length = sizeof(upperBits);
+    int i=0;
+    for(i; i<length; i++){
+	char lower = lowerString[i];
+    upperBits[i] = lower ^ ' ';
+   }
 }
 
 int main()
