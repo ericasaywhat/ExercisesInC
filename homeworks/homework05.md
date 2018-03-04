@@ -53,7 +53,7 @@ void convertCase(char* upperBits, char* lowerString){
     int i=0;
     for(i; i<length; i++){
 	char lower = lowerString[i];
-    upperBits[i] = lower ^ ' ';
+        upperBits[i] = lower ^ ' ';
    }
 }
 
