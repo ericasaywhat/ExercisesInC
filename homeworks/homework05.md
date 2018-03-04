@@ -59,12 +59,12 @@ void convertCase(char* upperBits, char* lowerString){
 
 int main()
 {
-	int i = 0;
+    int i = 0;
     char stringthing[] = "snails";
     int stringlength = strlen(stringthing);
     char *res = malloc(sizeof(char)*stringlength);
 
-	  convertCase(res, stringthing);
+    convertCase(res, stringthing);
 
     for(i; i<stringlength; i++){
     	printf("%c", res[i]);
