@@ -26,7 +26,6 @@ Try it out and confirm that the result is interpreted as -12.
 ^ 11111000
 -----------
   11110100
-
 ```
 
 3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a
@@ -38,10 +37,42 @@ Biased integers can represent numbers between a range from the negative to the p
 IEEE floating-point.  What would you get if you accidentally interpreted this value as an integer?
 
 
-
 5) Write a function that takes a string and converts from lower-case to upper-case by flipping the sixth bit.
 As a challenge, you can make a faster version by reading the string 32 or 64 bits at a time, rather than one
 character at a time.  This optimization is made easier if the length of the string is a multiple of 4 or 8 bytes.
 
+We can flip the sixth bith by XORing with 00100000, which is a space. Thus, in order to convert from lowercase to uppercase we need to XOR the character with a space.
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void convertCase(char* upperBits, char* lowerString){
+	int length = sizeof(upperBits);
+	int i=0;
+	for(i; i<length; i++){
+		char lower = lowerString[i];
+    	upperBits[i] = lower ^ ' ';
+	}
+}
+
+int main()
+{
+	int i = 0;
+    char stringthing[] = "snails";
+    int stringlength = strlen(stringthing);
+    char *res = malloc(sizeof(char)*stringlength);
+
+	  convertCase(res, stringthing);
+
+    for(i; i<stringlength; i++){
+    	printf("%c", res[i]);
+    }
+    puts("\n");
+
+    return 0;
+}
+```
 
 
