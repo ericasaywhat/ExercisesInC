@@ -21,10 +21,13 @@ Try it out and confirm that the result is interpreted as -12.
 
 12 ^ -8
 
-``` 00001100
+``` 
+00001100
 ^ 11111000
 -----------
-  11110100 ```
+  11110100 
+  
+```
 
 3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a
 sign bit or two's complement?
