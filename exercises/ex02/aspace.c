@@ -35,6 +35,5 @@ int main ()
     //distance between t and u is 30
 
 
-
     return 0;
 }
