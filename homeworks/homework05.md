@@ -35,7 +35,7 @@ Biased integers can represent numbers between a range from the negative to the p
 
 4) Following the example in Section 5.3, write the 32-bit binary representation of -13 in single precision
 IEEE floating-point.  What would you get if you accidentally interpreted this value as an integer?
-
+Following the example in Section 5.3, the integer representation for 13<sub>10</sub> is b1101, so in floating point, that's `1.01*2^3`. The coeficient that is stored would be `10100000000000000000000`. The first bit would be the sign bit of `1`. The exponent is 3 which with the bias of 127 is 130 which is `10000010`. All put together that is `11000001010100000000000000000000`. This as an integer is `-1051721728`.
 
 5) Write a function that takes a string and converts from lower-case to upper-case by flipping the sixth bit.
 As a challenge, you can make a faster version by reading the string 32 or 64 bits at a time, rather than one
