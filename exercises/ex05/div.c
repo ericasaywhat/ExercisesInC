@@ -26,7 +26,11 @@ uint32_t get_exponent(float x) {
 */
 float div_by_pow_2(float x, int n)
 {
-    // TODO: fill this in
+    int i =0;
+
+    for(i; i<n; i++){
+        x = x>>1;
+    }
     return x;
 }
 

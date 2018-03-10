@@ -99,18 +99,35 @@ Point *upper_right_rect(Rectangle *rect) {
     return p;
 }
 
+Point *make_point(double x, double y) {
+    Point *new = malloc(sizeof(Point));
+    new->x = x;
+    new->y = y;
+    return new;
+}
+Line *make_line(Point *p1, Point *p2){
+    Line *new = malloc(sizeof(Line));
+    new->start = p1;
+    new->end = p2;
+
+    return new;
+}
+
 void main (int argc, char *argv[]) {
     Point *lower_left = make_point(3.0, 4.0);
     Point *upper_right = make_point(5.0, 6.0);
 
-    printf("%s\n", point_to_string(lower_left));
-    printf("%s\n", point_to_string(upper_right));
+    // printf("%s\n", point_to_string(lower_left));
+    // printf("%s\n", point_to_string(upper_right));
 
-    Rectangle *rectangle = make_rectangle(lower_left, 2.0, 2.0);
-    printf("%s\n", rectangle_to_string(rectangle));
+    // Rectangle *rectangle = make_rectangle(lower_left, 2.0, 2.0);
+    // printf("%s\n", rectangle_to_string(rectangle));
 
-    Point *result = upper_right_rect(rectangle);
-    printf("%s\n", point_to_string(result));
+    // Point *result = upper_right_rect(rectangle);
+    // printf("%s\n", point_to_string(result));
 
-    assert(equal_point(result, upper_right));
+    Line *new_line = make_line(lower_left, upper_right);
+    printf("%s\n", line_to_string(new_line));
+
+    // assert(equal_point(result, upper_right));
 }
