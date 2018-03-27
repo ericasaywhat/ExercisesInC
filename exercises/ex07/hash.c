@@ -120,7 +120,7 @@ Hashable *make_hashable(void *key,
 */
 void print_hashable(Hashable *hashable)
 {
-    printf ("key %p\n", hashable->key);
+	printf ("key %p\n", hashable->key);
     printf ("hash %p\n", hashable->hash);
 }
 
@@ -178,7 +178,8 @@ int hash_hashable(Hashable *hashable)
 */
 int equal_int (void *ip, void *jp)
 {
-    // FILL THIS IN!
+	//FILL THIS IN
+    if(hash_int(ip) == hash_int(jp)){  return 1;  }
     return 0;
 }
 
@@ -193,6 +194,7 @@ int equal_int (void *ip, void *jp)
 int equal_string (void *s1, void *s2)
 {
     // FILL THIS IN!
+    if(hash_string(s1) == hash_string(s2)){  return 1;  }
     return 0;
 }
 
@@ -208,6 +210,7 @@ int equal_string (void *s1, void *s2)
 int equal_hashable(Hashable *h1, Hashable *h2)
 {
     // FILL THIS IN!
+    if(hash_hashable(h1)== hash_hashable(h2)){  return 1;  }
     return 0;
 }
 
@@ -277,6 +280,7 @@ void print_list(Node *node)
     if (node == NULL) {
         return;
     }
+    print_node(node);
     print_hashable(node->key);
     printf ("value %p\n", node->value);
     print_list(node->next);
@@ -297,7 +301,12 @@ Node *prepend(Hashable *key, Value *value, Node *rest)
 Value *list_lookup(Node *list, Hashable *key)
 {
     // FILL THIS IN!
-    return NULL;
+    Node *current = list;
+    equal_hashable(key, current->key);
+    while(current->next != NULL && !equal_hashable(key, current->key)){
+    	current = current->next;
+    }
+    return current->value;
 }
 
 
@@ -329,6 +338,7 @@ void print_map(Map *map)
 {
     int i;
 
+
     for (i=0; i<map->n; i++) {
         if (map->lists[i] != NULL) {
             printf ("%d\n", i);
@@ -342,6 +352,27 @@ void print_map(Map *map)
 void map_add(Map *map, Hashable *key, Value *value)
 {
     // FILL THIS IN!
+    Node *newNode = make_node(key, value, NULL);
+
+    int keyhash = hash_hashable(key);
+    int bucket  = keyhash % map->n;
+
+    Node* bucket_list = map->lists[bucket];
+
+    if (bucket_list == NULL){
+    	map->lists[bucket] = newNode;
+    } else {
+    	while(hash_hashable(bucket_list->key) != keyhash && bucket_list->next != NULL){
+    		bucket_list = bucket_list->next;
+    	}
+
+    	if(bucket_list->next != NULL){
+    		newNode->next = bucket_list->next;
+    	}
+
+    	bucket_list-> next = newNode;
+    }
+
 }
 
 
@@ -349,7 +380,19 @@ void map_add(Map *map, Hashable *key, Value *value)
 Value *map_lookup(Map *map, Hashable *key)
 {
     // FILL THIS IN!
+    int keyhash = hash_hashable(key);
+    int bucket = keyhash % map->n;
+
+    Node* bucket_list = map->lists[bucket];
+
+    if(bucket_list == NULL) {  return NULL;  }
+
+    while(bucket_list->next != NULL){
+    	if(hash_hashable(bucket_list->key) == keyhash){  return bucket_list->value;  }
+    	bucket_list = bucket_list->next;
+    }
     return NULL;
+
 }
 
 
