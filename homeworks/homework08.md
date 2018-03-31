@@ -5,7 +5,7 @@
 Modify the link below so it points to the `ex07` directory in your
 student repository.
 
-[Here is a link to the ex08 directory in my repository](https://github.com/YOUR_GITHUB_USERNAME_HERE/ExercisesInC/tree/master/exercises/ex08)
+[Here is a link to the ex08 directory in my repository](https://github.com/ericasaywhat/ExercisesInC/tree/master/exercises/ex08)
 
 ### Think OS Chapter 8 reading questions
 
@@ -29,6 +29,7 @@ For a context switch, the kernel saves all the registers and switches to a new p
 An example of an event that might cause a process to move from the blocked state to the ready state might be network communication or a disk read.
 
 5) Why might a scheduler want to give higher priority to an I/O bound process?
+
 I/O bound processes are processes that read data from a network or a disk. I/O bound processes are likely to run for a short time and then wait for. While waiting for inputs, the processor can work carry out CPU bound processes. I/O bound processes is the pie crust that needs chilling and the CPU bound are the filling.
 
 6) When I make French toast, I usually make a batch of 12 slices.  But my griddle only has room for 8 slices. 
