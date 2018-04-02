@@ -1,3 +1,14 @@
+/*
+   C Program that reads a text file, splits lines into words,
+   and counts the frequency of each word, all using GLib.The
+   text file is of Shakespeare's sonnets from Project
+   Gutenberg exists in the same directory as this file.
+
+   author: Erica Lee
+   last modified: 2 April 2018
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <glib.h>
@@ -8,7 +19,7 @@ GHashTable *makeHashtable(){
 
 void getTextString(gchar *filename, gchar** contents){
 	GError *err = NULL;
-	g_file_get_contents("sonnets.txt", contents, NULL, &err);
+	g_file_get_contents(filename, contents, NULL, &err);
 	if (err != NULL) {
     	g_assert (contents == NULL);
     	fprintf (stderr, "Unable to read file: %s\n", err->message);
@@ -20,7 +31,6 @@ void getTextString(gchar *filename, gchar** contents){
 }
 
 
-
 void updateHash(GHashTable *hashtable, gpointer key){
 	gpointer val = g_hash_table_lookup(hashtable, key);
 	val = val ? val+1 : (gpointer) 1;
@@ -29,7 +39,6 @@ void updateHash(GHashTable *hashtable, gpointer key){
 
 void getWordTable(GHashTable *hashtable, gchar *string, gchar **wordlist){
 	wordlist = g_strsplit(string, " ", -1);
-	// printf("%s/n", *wordlist);
     int i = 0;
     while(wordlist[i] != NULL){
     	updateHash(hashtable, wordlist[i]);
