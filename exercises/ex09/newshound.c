@@ -20,6 +20,16 @@ void error(char *msg)
     exit(1);
 }
 
+void child_code(int i, const char *PYTHON, const char *SCRIPT, char *search_phrase, char* vars[])
+{
+    sleep(i);
+    int res = execle(PYTHON, PYTHON, SCRIPT, search_phrase, NULL, vars);
+    if (res == -1) {
+        error("Can't run script.");
+    }
+
+}
+
 int main(int argc, char *argv[])
 {
     if (argc < 2) {
@@ -35,18 +45,31 @@ int main(int argc, char *argv[])
         "http://www.nytimes.com/services/xml/rss/nyt/Europe.xml",
         "http://www.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml"
     };
+    pid_t pid;
     int num_feeds = 5;
     char *search_phrase = argv[1];
     char var[255];
-
-    for (int i=0; i<num_feeds; i++) {
+    int i;
+    for (i=0; i<num_feeds; i++) {
         sprintf(var, "RSS_FEED=%s", feeds[i]);
         char *vars[] = {var, NULL};
 
-        int res = execle(PYTHON, PYTHON, SCRIPT, search_phrase, NULL, vars);
-        if (res == -1) {
-            error("Can't run script.");
+        pid = fork();
+
+        /* check for an error */
+        if (pid == -1) {
+            fprintf(stderr, "fork failed: %s\n", strerror(errno));
+            perror(argv[0]);
+            exit(1);
         }
+
+        /* see if we're the parent or the child */
+        if (pid == 0) {
+            child_code(i, PYTHON, SCRIPT, search_phrase, vars);
+            exit(i);
+        }
+
+
     }
     return 0;
 }
