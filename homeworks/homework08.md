@@ -39,3 +39,5 @@ this is really how I make French toast.)
 
 We want to cook six at a time. If we fill up all 8 spots, the first batch of 8 would be hard to flip and second batch of 4 would have a lot of empty space. If we were master French toast flippers, we could cook a first batch of 4 and a second batch of 8 so that when we are done cooking we will have 8 warm ones and 4 cooler ones rather than 4 warm ones and 8 cooler ones.
 
+-OR-
+We cook 8 sides at a time. After the first 8, we flip 4 and replace the other 4 and swap out the four. That saves 5 minutes on time and all the toasts are pretty warm.
