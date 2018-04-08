@@ -17,11 +17,12 @@ typedef struct {
 /* Make a matrix.
 */
 Matrix *make_matrix(int num_rows, int num_cols) {
+    int i;
     Matrix *matrix = malloc(sizeof(Matrix));
     matrix->num_rows = num_rows;
     matrix->num_cols = num_cols;
     matrix->rows = malloc(num_rows * sizeof(double*));
-    for (int i=0; i<num_rows; i++) {
+    for (i=0; i<num_rows; i++) {
         matrix->rows[i] = calloc(num_cols, sizeof(double));
     }
     return matrix;
@@ -31,12 +32,19 @@ Matrix *make_matrix(int num_rows, int num_cols) {
 */
 void free_matrix(Matrix *matrix) {
     // TODO: Fill this in.
+    int i;
+    for (i=0; i<matrix->num_rows; i++) {
+        free(matrix->rows[i]);
+    }
+    free(matrix->rows);
+    free(matrix);
 }
 
 /* Print a row of a matrix.
 */
 void print_matrix_row(double *row, int num_cols) {
-    for (int j=0; j<num_cols; j++) {
+    int j;
+    for (j=0; j<num_cols; j++) {
         printf("%f ", row[j]);
     }
 }
@@ -44,7 +52,8 @@ void print_matrix_row(double *row, int num_cols) {
 /* Print a matrix.
 */
 void print_matrix(Matrix *matrix) {
-    for (int i=0; i<matrix->num_rows; i++) {
+    int i;
+    for (i=0; i<matrix->num_rows; i++) {
         print_matrix_row(matrix->rows[i], matrix->num_cols);
         printf("\n");
     }
@@ -57,12 +66,24 @@ of row i is 0.
 */
 void reduce_matrix_rows(Matrix *matrix, int i, int j) {
     // TODO: Fill this in.
+    int k;
+
+    double *i_row = matrix->rows[i];
+    double *j_row = matrix->rows[j];
+
+    double factor = i_row[0]/j_row[0];
+
+    for(k=0; k<matrix->num_rows;k++){
+        matrix->rows[i][k] -= matrix->rows[j][k] * factor;
+    }
+
 }
 
 int main () {
+    int i, j;
     Matrix *matrix = make_matrix(3, 4);
-    for (int i=0; i<matrix->num_rows; i++) {
-        for (int j=0; j<matrix->num_cols; j++) {
+    for (i=0; i<matrix->num_rows; i++) {
+        for (j=0; j<matrix->num_cols; j++) {
             matrix->rows[i][j] = i + j + 1;
         }
     }
