@@ -19,6 +19,8 @@ License: MIT License https://opensource.org/licenses/MIT
 // error information
 extern int errno;
 
+char *snail = "snail";
+
 
 // get_seconds returns the number of seconds since the
 // beginning of the day, with microsecond precision
@@ -33,8 +35,14 @@ double get_seconds() {
 void child_code(int i)
 {
     sleep(i);
+    int a = malloc(sizeof(int));
+    printf("address of %d\n", &a);      //the address is the same so they are on the same heap
+    printf("value of var is %i\n", a);
+
+    printf("%d\n", &snail);         // snail is a global variable; all the addresses are the same
+    printf("%s\n", snail);
+
     printf("Hello from child %d.\n", i);
-    exit(i);
 }
 
 // main takes two parameters: argc is the number of command-line
@@ -46,6 +54,8 @@ int main(int argc, char *argv[])
     pid_t pid;
     double start, stop;
     int i, num_children;
+
+    int *array = calloc(4, sizeof(int));
 
     // the first command-line argument is the name of the executable.
     // if there is a second, it is the number of children to create.
@@ -74,6 +84,7 @@ int main(int argc, char *argv[])
         /* see if we're the parent or the child */
         if (pid == 0) {
             child_code(i);
+            exit(i);
         }
     }
 
