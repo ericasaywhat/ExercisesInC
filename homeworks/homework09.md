@@ -15,7 +15,7 @@ A thread contains the program counter and other hardware state, adn the call sta
 
 2) What does the gcc flag `-lpthread` do?
 
-The `-lpthread` flag compiles the Pthread library in gcc.
+The `-lpthread` flag links the Pthread library in gcc so that the program will compile.
 
 3) What does the argument of `pthread_exit` do?
 
