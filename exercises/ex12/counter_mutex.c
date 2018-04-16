@@ -8,6 +8,7 @@ License: GNU GPLv3
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include "mutex.c"
 
 #define NUM_CHILDREN 2
 
@@ -30,6 +31,7 @@ typedef struct {
   int counter;
   int end;
   int *array;
+  Mutex *mutex;
 } Shared;
 
 Shared *make_shared(int end)
@@ -39,6 +41,7 @@ Shared *make_shared(int end)
 
   shared->counter = 0;
   shared->end = end;
+  shared->mutex = make_mutex();
 
   shared->array = check_malloc(shared->end * sizeof(int));
   for (i=0; i<shared->end; i++) {
@@ -75,12 +78,14 @@ void child_code(Shared *shared)
     if (shared->counter >= shared->end) {
       return;
     }
+    mutex_lock(shared->mutex);
     shared->array[shared->counter]++;
     shared->counter++;
 
     // if (shared->counter % 10000 == 0) {
     //   printf("%d\n", shared->counter);
     // }
+    mutex_unlock(shared->mutex);
   }
 }
 
@@ -123,7 +128,18 @@ int main()
   return 0;
 }
 
+/*
 
-/* Comments from Erica:
-   When I compiled and ran this code i got 52669 errors.
+counter_array time
+real  0m0.020s
+user  0m0.012s
+sys 0m0.008s
+
+counter_mutex time
+real  0m0.053s
+user  0m0.028s
+sys 0m0.044s
+
+
+synchronization has about 0.03 seconds of overhead
 */

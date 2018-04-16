@@ -9,7 +9,7 @@ License: GNU GPLv3
 #include <stdlib.h>
 #include <pthread.h>
 
-#define NUM_CHILDREN 5
+#define NUM_CHILDREN 10
 
 /* Print an error message and exit.
 */
@@ -104,3 +104,21 @@ int main()
     printf("Final value of counter is %d\n", shared->counter);
     return 0;
 }
+
+
+/* Comments from Erica:
+   -printing counter in children doesn't increment because the threads read at certain time
+    and then print the value.
+   -They run concurrently and read the counter separately, but this is fixed when we join them again.
+   -The final counter is correct.
+
+   Fortunately, for me, all the threads happen in order, but sometimes they don't. If we print 0, 0, 0, 0, 4
+   for "counter= "
+
+   Since this is relatively simple code, it's not surprising this all works. Increasing the number of children
+   will eventually have us run into a synchronization error where the final number is not what it should be
+   because a thread reads and write the same value that another thread has.
+
+   The first four threads read 0 and print that before incrementing and writing, the last thread reads after
+   the last write happens, and then prints 4, increments, and writes 5.
+*/
