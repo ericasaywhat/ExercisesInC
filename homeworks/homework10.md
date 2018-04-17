@@ -41,7 +41,9 @@ No, you do not have to lock the mutex to signal a condition variable.
 
 8) Does the condition have to be true when you signal a condition variable?
 
-Yes the condition has to be true when you signal a condition variable. If there is an intercepted signal and the condition suddenly is not true, it will probably cause an error.
+No, the condition doesn't have to be true when you signal a condition variable because the receiver of the signal will have to check the condition anyway.
+
+
 
 
 
