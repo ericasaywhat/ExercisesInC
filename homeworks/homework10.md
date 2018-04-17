@@ -37,7 +37,7 @@ If you signal a condition variable when there are no waiting threads, the signal
 
 7) Do you have to lock the mutex to signal a condition variable?
 
-No, you do not have to lock the mutex to signal a condition variable. You have to unlock the mutex before you can `cond_signal`
+No, you do not have to lock the mutex to signal a condition variable.
 
 8) Does the condition have to be true when you signal a condition variable?
 
