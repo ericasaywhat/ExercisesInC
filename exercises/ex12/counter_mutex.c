@@ -8,7 +8,7 @@ License: GNU GPLv3
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "mutex.c"
+#include "mutex.h"
 
 #define NUM_CHILDREN 2
 
@@ -142,4 +142,4 @@ sys 0m0.044s
 
 
 synchronization has about 0.03 seconds of overhead
-*/
+*/S
