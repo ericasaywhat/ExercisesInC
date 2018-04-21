@@ -1,6 +1,10 @@
-/* Code from Head First C.
+/*
+   Code modified from ikkp-server.c
+   to use threads for every connection
+   that can be found in this directory
 
-Modified by Allen Downey.
+   last updated: 2018 April 21
+   author: erica
 
 */
 
