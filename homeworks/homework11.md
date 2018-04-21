@@ -37,10 +37,12 @@ If the value of `queue->spaces` is `-3`, we know that the queue is full and that
 7) Any problem that can be solved with Semaphores can also be solved with mutexes and condition variables.
 How can you prove that that's true?
 
-
+Semaphores are like integers that can be initialized to any value but can only be incremented or decremented, and its value can't be read. When a thread decrements the semaphore and the result is negative, the thread blocks and can't continue until another thread increments the semaphore, like a condition variable. A semaphore is also like a mutex in which a thread locks and unlocks allowing only one thread at a time.
 
 8) What is Property 3?  Hint: see *The Little Book of Semaphores*, 
 [Section 4.3](http://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf). 
+
+Property 3 is that if there are threads waiting on a semaphore when a thread executes `signal`, then one of the waiting threads has to be woken.
 
 
 
