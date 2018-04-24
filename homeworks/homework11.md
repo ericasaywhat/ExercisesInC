@@ -24,7 +24,7 @@ You would want the initial value of a Semaphore to be 0 if you wanted to use the
 4) In my solution to the producers-consumers problem using Semaphores,
 what does it mean if the value of `queue->spaces` is `3` at some point in time?
 
-If the value of `queue->spaces` is `3` at some point in time means that the queue has 3 empty spaces in the queue. 
+If the value of `queue->spaces` is `3` at some point in time means that the queue has 3 empty spaces in the queue.
 
 5) What does it mean if `queue->space` is `-3`?
 
@@ -39,8 +39,8 @@ How can you prove that that's true?
 
 Semaphores are like integers that can be initialized to any value but can only be incremented or decremented, and its value can't be read. When a thread decrements the semaphore and the result is negative, the thread blocks and can't continue until another thread increments the semaphore, like a condition variable. A semaphore is also like a mutex in which a thread locks and unlocks allowing only one thread at a time.
 
-8) What is Property 3?  Hint: see *The Little Book of Semaphores*, 
-[Section 4.3](http://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf). 
+8) What is Property 3?  Hint: see *The Little Book of Semaphores*,
+[Section 4.3](http://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf).
 
 Property 3 is that if there are threads waiting on a semaphore when a thread executes `signal`, then one of the waiting threads has to be woken.
 
