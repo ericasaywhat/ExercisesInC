@@ -18,6 +18,7 @@ Based on an example in Head First C.
 #include <errno.h>
 #include <signal.h>
 
+int end = 0;
 int score = 0;
 
 /* Set up a signal handler.
@@ -44,8 +45,9 @@ void end_game(int sig)
 /* Signal handler: Notify the user and raise SIGINT.
 */
 void times_up(int sig) {
-    puts("\nTIME'S UP!");
-    raise(SIGINT);
+    puts("\nTIME'S UP! ANSWER THIS QUESTION NOW");
+    // raise(SIGINT);
+    end = 1;
 }
 
 int main(void) {
@@ -69,9 +71,12 @@ int main(void) {
 
         // set (or reset) the alarm
         alarm(5);
-
+        while(1){
+            char *ret = fgets(txt, 4, stdin);
+            if (ret) {  break;  }
+        }
         // get the answer
-	    char *ret = fgets(txt, 4, stdin);
+	    // char *ret = fgets(txt, 4, stdin);
         answer = atoi(txt);
 
         // check the answer
@@ -82,6 +87,10 @@ int main(void) {
             printf("\nWrong!\n");
         }
         printf("Score: %i\n", score);
+
+        if(end){
+            end_game(0);
+        }
     }
     return 0;
 }

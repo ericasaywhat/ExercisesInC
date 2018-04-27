@@ -55,6 +55,7 @@ int COUNT = 10;
 // From https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/
 void print2D(struct node* root, int space)
 {
+    int i;
     // Base case
     if (root == NULL)
         return;
@@ -68,7 +69,7 @@ void print2D(struct node* root, int space)
     // Print current node after space
     // count
     printf("\n");
-    for (int i = COUNT; i < space; i++)
+    for (i = COUNT; i < space; i++)
         printf(" ");
     printf("%d\n", root->data);
 
@@ -93,7 +94,11 @@ struct node *rotate_right(struct node* root) {
 
 struct node *rotate_left(struct node* root) {
     // TODO: fill this in
-    // See
+    // based off rotate_right() function above
+    struct node* pivot = root->right;
+    root->right = pivot->left;
+    pivot->left = root;
+    return pivot;
 }
 
 
@@ -113,6 +118,10 @@ int main()
 
     root = rotate_right(root);
     print2D(root, 0);
+    printf("-----\n");
+
+    root = rotate_left(root);
+    print2D(root,0);
 
     return 0;
 }
