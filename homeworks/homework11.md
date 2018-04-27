@@ -11,7 +11,7 @@ student repository.
 
 1) Why is it a bad idea to pass a `sem_t` as a parameter?
 
-It's a bad idea to pass a `sem_t` as a parameter because it behaves like a structure. Since copying a semaphore can yield unexpected results, you want to pass it by pointer.
+It's a bad idea to pass a `sem_t` as a parameter because it is the same thing as an `atomic_t` so it needs it as a pointer that points into a table of structures, so you can't copy the structure or access the contents of the semaphore.
 
 2) When you use a Semaphore as a mutex, what should its initial value be?
 
@@ -38,6 +38,8 @@ If the value of `queue->spaces` is `-3`, we know that the queue is full and that
 How can you prove that that's true?
 
 Semaphores are like integers that can be initialized to any value but can only be incremented or decremented, and its value can't be read. When a thread decrements the semaphore and the result is negative, the thread blocks and can't continue until another thread increments the semaphore, like a condition variable. A semaphore is also like a mutex in which a thread locks and unlocks allowing only one thread at a time.
+
+We can prove that this is true by implementing the semaphore using mutexes adn condition variables.
 
 8) What is Property 3?  Hint: see *The Little Book of Semaphores*,
 [Section 4.3](http://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf).
