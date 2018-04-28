@@ -48,9 +48,12 @@ void kv_printor (gpointer key, gpointer value, gpointer user_data)
 void accumulator(gpointer key, gpointer value, gpointer user_data)
 {
     GSequence *seq = (GSequence *) user_data;
-    Pair *pair = g_new(Pair, 1);
-    pair->word = (gchar *) key;
-    pair->freq = *(gint *) value;
+    Pair *temp = g_new(Pair, 1);
+    temp->word = (gchar *) key;
+    temp->freq = *(gint *) value;
+
+    Pair *pair = temp;
+    free(temp);
 
     g_sequence_insert_sorted(seq,
         (gpointer) pair,
@@ -64,8 +67,10 @@ void incr(GHashTable* hash, gchar *key)
     gint *val = (gint *) g_hash_table_lookup(hash, key);
 
     if (val == NULL) {
-        gint *val1 = g_new(gint, 1);
-        *val1 = 1;
+        gint *temp = g_new(gint, 1);
+        *temp = 1;
+        gint *val1 = temp;
+        free(temp);
         g_hash_table_insert(hash, key, val1);
     } else {
         *val += 1;
@@ -75,6 +80,7 @@ void incr(GHashTable* hash, gchar *key)
 int main(int argc, char** argv)
 {
     gchar *filename;
+    int i;
 
     // open the file
     if (argc > 1) {
@@ -101,9 +107,11 @@ int main(int argc, char** argv)
         if (res == NULL) break;
 
         array = g_strsplit(line, " ", 0);
-        for (int i=0; array[i] != NULL; i++) {
+        for (i=0; array[i] != NULL; i++) {
             incr(hash, array[i]);
+            free(array[i]);
         }
+        free(array);
     }
     fclose(fp);
 
